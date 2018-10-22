@@ -27,8 +27,22 @@ numberSpecies("setosa") # gives #setosa
 
 # Return a dataframe for flowers with sepal width greater
 # than specified value
+sepalFrame = function(desiredWidth){
+  width = (iris[iris$Sepal.Width > desiredWidth,])
+  return(width)
+}
+sepalFrame(3.7)
 
+# Write a csv for each species 
+speciesCSV = function(speciesName){
+  speciesTotal = (iris[iris$Species == speciesName,]) 
+  # grabs all data rows for desired species
+  filename = paste(speciesName, "csv", sep = ".")
+  # creates a filename based on desired species
+  write.csv(speciesTotal, filename, row.names = FALSE)
+  # writes csv containing species data, using the filename
+}
 
-
-
-
+speciesCSV("virginica")
+speciesCSV("setosa")
+speciesCSV("versicolor")
